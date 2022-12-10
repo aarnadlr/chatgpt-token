@@ -30,6 +30,6 @@
   },
   "homepage": "https://github.com/Mereithhh/chatgpt-token#readme",
   "dependencies": {
-    "@playwright/test": "^1.28.1"
+    "chrome-aws-lambda": "10.1.0"
   }
 }

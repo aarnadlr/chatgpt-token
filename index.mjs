@@ -1,4 +1,5 @@
-import { chromium } from "@playwright/test";
+// import { chromium } from "@playwright/test";
+import chromium from 'chrome-aws-lambda';
 
 const headers = {
   "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
@@ -6,7 +7,14 @@ const headers = {
 
 const chatgptToken = async (username, password) => {
 
-  const browser = await chromium.launch();
+//   const browser = await chromium.launch();
+  const browser = await chromium.puppeteer.launch({
+    args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
+    defaultViewport: chromium.defaultViewport,
+    executablePath: await chromium.executablePath,
+    headless: true,
+    ignoreHTTPSErrors: true,
+  })
 
   const context = await browser.newContext();
 
